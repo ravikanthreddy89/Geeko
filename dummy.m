@@ -1,37 +1,14 @@
-train_data=load('train.csv');
-  test_data=load('test.csv');
-  
-  % Separate data of each digit
+clearvars;
+clc;
 
-  indices=find(train_data(:,1)==0);
-  train0=train_data(indices,:);
+% Perform pre-processing
+[train_data, train_label, validation_data, validation_label, test_data] = preprocess2();
 
-  indices=find(train_data(:,1)==1);
-  train1=train_data(indices,:);
+save('train_data', 'train_label', 'validation_data', 'validation_label', 'test_data');
 
-  indices=find(train_data(:,1)==2);
-  train2=train_data(indices,:);
+k=1;
 
-  indices=find(train_data(:,1)==3);
-  train3=train_data(indices,:);
+predicted_label = knnPredict(k, train_data, train_label, validation_data);
+fprintf('\nValidation Set Accuracy: %f\n', ...
+         mean(double(predicted_label == validation_label)) * 100);
 
-  indices=find(train_data(:,1)==4);
-  train4=train_data(indices,:);
-
-  indices=find(train_data(:,1)==5);
-  train5=train_data(indices,:);
-
-  indices=find(train_data(:,1)==6);
-  train6=train_data(indices,:);
-
-  indices=find(train_data(:,1)==7);
-  train7=train_data(indices,:);
-
-  indices=find(train_data(:,1)==8);
-  train8=train_data(indices,:);
-
-  indices=find(train_data(:,1)==9);
-  train9=train_data(indices,:);
-
-
-  

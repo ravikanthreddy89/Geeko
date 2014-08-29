@@ -27,9 +27,17 @@ mat_1=ones(size(y_n,1),1);
 a=t.*log(y_n);
 b=(mat_1-t).*log(mat_1-y_n);
 
-error=-1*sum(a+b);
 
-error_grad=X'*(y_n-t);
+%let lambda = 0.1
+lambda=0.01;
+regularization_error=lambda* sum(w.*w)/(2*size(X,2)); 
+
+error= ((-1*sum(a+b))/size(X,2))+regularization_error;
+error_grad= X'*(y_n-t) + (lambda*w)/size(X,2);
+
+% these are without regularization 
+%error=-1*sum(a+b);
+%error_grad=X'*(y_n-t);
 
 
 end

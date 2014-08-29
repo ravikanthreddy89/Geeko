@@ -22,5 +22,6 @@ X=horzcat(intercept,X);
 output=sigmoid(X*W);
 
 [~ , label]=max(output,[],2);
+label=label-1;
 end
 

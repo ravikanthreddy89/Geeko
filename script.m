@@ -6,6 +6,12 @@ clc;
 
 save('train_data', 'train_label', 'validation_data', 'validation_label', 'test_data');
 
+fprintf('Size of train_date');
+size(train_data)
+fprintf('Size of test_data');
+size(test_data)
+fprintf('Size of validation data');
+size(validation_data)
 
 %Encode the single digit labels to 10-bit vectors
 n_class = 10;
@@ -29,13 +35,14 @@ end
 
 W_blr=W;
 predicted_label = blrPredict(W, train_data);
+size(predicted_label)
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(predicted_label == train_label)) * 100);
 
 predicted_label = blrPredict(W, validation_data);
 fprintf('\nValidation Set Accuracy: %f\n', mean(double(predicted_label == validation_label)) * 100);
 
-%predicted_label = blrPredict(W, test_data);
-%fprintf('\nTest Set Accuracy: %f\n', mean(double(predicted_label == test_label)) * 100);
+predicted_label = blrPredict(W, test_data);
+fprintf('\nTest Set Accuracy: %f\n', mean(double(predicted_label == test_label)) * 100);
 
 return;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

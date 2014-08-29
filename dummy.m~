@@ -1,0 +1,25 @@
+%Encode the single digit labels to 10-bit vectors
+n_class = 10;
+T = zeros(size(train_label, 1), n_class);
+for i = 1 : n_class
+    T(:, i) = (train_label == i);
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Binary Logistic Regression with Gradient Descent*******************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+fprintf('\nLogistic regression with Gradient descent\n');
+options = optimset('MaxIter', 200);
+W = zeros(size(train_data, 2) + 1, n_class);
+initialWeights = zeros(size(train_data, 2) + 1, 1);
+for i = 1 : n_class
+    objFunction = @(params) blrObjFunction(params, train_data, T(:, i));
+    [w, ~] = fmincg(objFunction, initialWeights, options);
+    W(:, i) = w;
+end
+
+W_blr=W;
+predicted_label = blrPredict(W, train_data);
+size(predicted_label)
+fprintf('\nTraining Set Accuracy: %f\n', mean(double(predicted_label == train_label)) * 100);
+  

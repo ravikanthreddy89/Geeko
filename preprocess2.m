@@ -7,33 +7,54 @@ function [train_data, train_label,validation_data, validation_label, test_data] 
 
   indices=find(train_data(:,1)==0);
   train0=train_data(indices,:);
+  size(indices)
+  save('train0'); 
 
   indices=find(train_data(:,1)==1);
   train1=train_data(indices,:);
+  size(indices)
+  save('train1');
 
   indices=find(train_data(:,1)==2);
   train2=train_data(indices,:);
+  size(indices)
+  save('train2');
 
   indices=find(train_data(:,1)==3);
   train3=train_data(indices,:);
+  size(indices)
+  save('train3');
 
   indices=find(train_data(:,1)==4);
   train4=train_data(indices,:);
+  size(indices)
+  save('train4');
 
   indices=find(train_data(:,1)==5);
   train5=train_data(indices,:);
+  size(indices)
+  save('train5');
 
   indices=find(train_data(:,1)==6);
   train6=train_data(indices,:);
+  size(indices)
+  save('train6');
 
   indices=find(train_data(:,1)==7);
   train7=train_data(indices,:);
+  size(indices)
+  save('train7');
 
   indices=find(train_data(:,1)==8);
   train8=train_data(indices,:);
+  size(indices)
+  save('train8');
+
 
   indices=find(train_data(:,1)==9);
   train9=train_data(indices,:);
+  size(indices)
+  save('train9');
 
 n_validation=800;
 
@@ -42,7 +63,7 @@ n_validation=800;
   train5(1:n_validation, :); train6(1:n_validation, :); train7(1:n_validation, :);
   train8(1:n_validation, :); train9(1:n_validation, :)];
     
- validation_label=validation_data(:,1);
+  validation_label=validation_data(:,1);
   validation_data=validation_data(:,2:end);
  
 
@@ -78,6 +99,10 @@ for i = 1 : n_feature
         new_test_data = [new_test_data test_data(:, i)];
     end
 end  
+
+size(new_train_data)
+size(new_validation_data)
+size(new_test_data)
 
 train_data = new_train_data;
 validation_data = new_validation_data;
